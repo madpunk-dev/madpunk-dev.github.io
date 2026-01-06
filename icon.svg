@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 510">
+  <style>
+    /* ダークモード対応: デフォルトは黒、ダークモードで白 */
+    .stone { fill: #111111; }
+    @media (prefers-color-scheme: dark) {
+      .stone { fill: #eeeeee; }
+    }
+  </style>
+  
+  <rect class="stone" x="32" y="32" width="446" height="446" rx="96" />
+</svg>

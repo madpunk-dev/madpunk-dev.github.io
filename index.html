@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>MadPunk Dev | R&D Laboratory</title>
+    <meta name="description" content="MadPunk Dev is a research laboratory for MadPunks. Testing boundaries, validating technologies, and living the Mad & Punk philosophy through code.">
+    <meta name="keywords" content="MadPunk Dev, MadPunks, R&D, SVG, Favicon, Experiment">
+    
+    <meta property="og:title" content="MadPunk Dev">
+    <meta property="og:description" content="The R&D Laboratory under the MadPunks philosophy.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://madpunk.dev">
+
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #e0e0e0;
+            --sub: #666;
+            --font: 'Courier New', Courier, monospace;
+            
+            /* Brand Colors */
+            --mad-red: #ff3333;      
+            --granum-green: #00ff41; 
+            --dev-yellow: #eeff00;   
+            --white: #ffffff;
+            
+            /* Active Theme Color */
+            --theme-color: var(--dev-yellow);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.6;
+            
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        header {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 2rem;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h1 { 
+            font-size: 2.5rem; 
+            margin-bottom: 0.5rem; 
+            letter-spacing: -1px; 
+            font-weight: 700;
+        }
+
+        /* Title Coloring */
+        .title-mad { color: var(--text); }
+        .title-dev { color: var(--theme-color); text-shadow: 0 0 10px rgba(238, 255, 0, 0.2); }
+        
+        /* Subtitle Styling */
+        .sub-title {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            display: block;
+            font-weight: bold;
+        }
+
+        /* Color Utility Classes */
+        .c-lab { color: var(--theme-color); }
+        .c-white { color: var(--white); opacity: 0.6; }
+        .c-mix { color: var(--theme-color); }
+
+        .desc { color: var(--sub); font-size: 0.9rem; }
+
+        .philosophy {
+            margin-top: 2rem;
+            padding: 1rem;
+            border: 1px dashed #333;
+            display: inline-block;
+        }
+        
+        .motto { 
+            font-weight: bold; 
+            color: var(--text);
+            display: block; 
+        }
+
+        main {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .node {
+            border: 1px solid #333;
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 4px;
+        }
+        
+        .prep {
+            opacity:0.3;
+            cursor: default;
+            border-style: dashed;
+        }
+
+        /* Hover effect only for active nodes (not prep) */
+        .node:not(.prep):hover {
+            border-color: var(--theme-color);
+            background: rgba(238, 255, 0, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(238, 255, 0, 0.1);
+        }
+
+        .prep:hover {
+            border-color: var(--theme-color);
+            background: rgba(238, 255, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(238, 255, 0, 0.1);
+        }
+
+        .char { 
+            font-size: 2.5rem; 
+            font-weight: bold; 
+            display: block; 
+            margin-bottom: 0.5rem;
+            font-family: Arial, sans-serif;
+        }
+        
+        .status { 
+            font-size: 0.7rem; 
+            color: var(--sub);
+            letter-spacing: 1px;
+        }
+
+        /* --- About / README Section --- */
+        .readme-section {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #222;
+            text-align: left;
+            color: var(--sub);
+            font-size: 0.85rem;
+        }
+
+        .readme-section h2 {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .readme-section p {
+            margin-bottom: 1rem;
+        }
+
+        /* --- Footer Styles --- */
+        footer { 
+            margin-top: 3rem;
+            padding-top: 2rem; 
+            color: var(--sub); 
+            font-size: 0.8rem; 
+            opacity: 0.9;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            max-width: 800px;
+            border-top: 1px dotted #333;
+        }
+
+        /* Links Container */
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        /* General Link Styling (Make them visible) */
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+        
+        /* Specific styling for actionable links */
+        .footer-nav a, .readme-link {
+            color: var(--text);
+            border-bottom: 1px dotted var(--sub);
+            padding-bottom: 2px;
+        }
+
+        .footer-nav a:hover, .readme-link:hover, .brand-link:hover {
+            color: var(--theme-color);
+            border-bottom: 1px solid var(--theme-color);
+        }
+        
+        .brand-ref { font-size: 0.7rem; opacity: 0.6; }
+        
+        /* MadPunks link specific */
+        .brand-link {
+            color: var(--text);
+            font-weight: bold;
+            border-bottom: 1px dotted var(--sub);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>
+            <span class="title-mad">MadPunk</span> <span class="title-dev">Dev.</span>
+        </h1>
+        
+        <span class="sub-title">
+            <span class="c-lab">LABORATORY</span>
+            <span class="c-white">&nbsp;&&nbsp;</span>
+            <span class="c-mix">R</span><span class="c-mix">&</span><span class="c-mix">D</span>
+        </span>
+        
+        <div class="desc">
+            An experimental facility under the <strong>MadPunks</strong> ecosystem.
+        </div>
+        
+        <div class="philosophy">
+            <span class="motto">
+                Stay Hungry, Stay Mad & Punk.<br>
+            </span>
+            <span class="desc" style="font-size: 0.8rem; margin-top:0.5rem; display:block;">
+                壊すべき(Punk)は自分たちの古い価値観。<br>
+                今日を真剣に夢中(Mad)に生きる。
+            </span>
+        </div>
+    </header>
+
+    <main>
+        <p style="color:var(--sub); margin-top: 1rem;">
+            &gt; Current Status: SVG Favicon Validation across Subdomains
+        </p>
+        
+        <div class="grid-container">
+            <a prep_href="https://a.madpunk.dev" class="node prep">
+                <span class="char">a</span>
+                <span class="status">Test "a"</span>
+            </a>
+            <a prep_href="https://b.madpunk.dev" class="node prep">
+                <span class="char">b</span>
+                <span class="status">Test "b"</span>
+            </a>
+            <a prep_href="https://c.madpunk.dev" class="node prep">
+                <span class="char">c</span>
+                <span class="status">Test "c"</span>
+            </a>
+            <a prep_href="https://d.madpunk.dev" class="node prep">
+                <span class="char">d</span>
+                <span class="status">Test "d"</span>
+            </a>
+            <a prep_href="https://e.madpunk.dev" class="node prep">
+                <span class="char">e</span>
+                <span class="status">Test "e"</span>
+            </a>
+            <a prep_href="https://f.madpunk.dev" class="node prep">
+                <span class="char">f</span>
+                <span class="status">Test "f"</span>
+            </a>
+            <a prep_href="https://g.madpunk.dev" class="node prep">
+                <span class="char">g</span>
+                <span class="status">Test "g"</span>
+            </a>
+            <a prep_href="https://h.madpunk.dev" class="node prep">
+                <span class="char">h</span>
+                <span class="status">Test "h"</span>
+            </a>
+            <a prep_href="https://i.madpunk.dev" class="node prep">
+                <span class="char">i</span>
+                <span class="status">Test "i"</span>
+            </a>
+            <a prep_href="https://j.madpunk.dev" class="node prep">
+                <span class="char">j</span>
+                <span class="status">Test "j"</span>
+            </a>
+            <a prep_href="https://k.madpunk.dev" class="node prep">
+                <span class="char">k</span>
+                <span class="status">Test "k"</span>
+            </a>
+            <a prep_href="https://l.madpunk.dev" class="node prep">
+                <span class="char">l</span>
+                <span class="status">Test "l"</span>
+            </a>
+            <a prep_href="https://m.madpunk.dev" class="node prep">
+                <span class="char">m</span>
+                <span class="status">Test "m"</span>
+            </a>
+            <a prep_href="https://n.madpunk.dev" class="node prep">
+                <span class="char">n</span>
+                <span class="status">Test "n"</span>
+            </a>
+            <a prep_href="https://o.madpunk.dev" class="node prep">
+                <span class="char">o</span>
+                <span class="status">Test "o"</span>
+            </a>
+            <a prep_href="https://p.madpunk.dev" class="node prep">
+                <span class="char">p</span>
+                <span class="status">Test "p"</span>
+            </a>
+            <a prep_href="https://q.madpunk.dev" class="node prep">
+                <span class="char">q</span>
+                <span class="status">Test "q"</span>
+            </a>
+            <a prep_href="https://r.madpunk.dev" class="node prep">
+                <span class="char">r</span>
+                <span class="status">Test "r"</span>
+            </a>
+            <a prep_href="https://s.madpunk.dev" class="node prep">
+                <span class="char">s</span>
+                <span class="status">Test "s"</span>
+            </a>
+            <a prep_href="https://t.madpunk.dev" class="node prep">
+                <span class="char">t</span>
+                <span class="status">Test "t"</span>
+            </a>
+            <a prep_href="https://u.madpunk.dev" class="node prep">
+                <span class="char">u</span>
+                <span class="status">Test "u"</span>
+            </a>
+            <a prep_href="https://v.madpunk.dev" class="node prep">
+                <span class="char">v</span>
+                <span class="status">Test "v"</span>
+            </a>
+            <a prep_href="https://w.madpunk.dev" class="node prep">
+                <span class="char">w</span>
+                <span class="status">Test "w"</span>
+            </a>
+            <a prep_href="https://x.madpunk.dev" class="node prep">
+                <span class="char">x</span>
+                <span class="status">Test "x"</span>
+            </a>
+            <a prep_href="https://y.madpunk.dev" class="node prep">
+                <span class="char">y</span>
+                <span class="status">Test "y"</span>
+            </a>
+            <a prep_href="https://z.madpunk.dev" class="node prep">
+                <span class="char">z</span>
+                <span class="status">Test "z"</span>
+            </a>
+
+            <div class="node prep">
+                <span class="char">+</span>
+                <span class="status">More to come</span>
+            </div>
+        </div>
+
+        <section class="readme-section">
+            <h2>About MadPunk Dev</h2>
+            <p>
+                <strong>MadPunk Dev</strong> is the experimental research facility (Laboratory) within the MadPunks ecosystem.<br>
+                Our mission is to validate technologies, break deprecated standards, and implement philosophy through code.
+            </p>
+            <p>
+                <strong>MadPunk Dev</strong>は、MadPunksエコシステムにおける実験的研究施設です。<br>
+                アルファベット順のサブドメインを活用し、SVGファビコンの挙動検証や新技術の実装実験を行っています。
+            </p>
+            <a href="https://github.com/madpunk-dev/madpunk-dev.github.io/blob/main/README.md" class="readme-link" target="_blank">
+                &gt; View Full README on GitHub
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <nav class="footer-nav">
+            <a href="mailto:lab@madpunk.dev">lab@madpunk.dev</a>
+            <a href="https://github.com/madpunk-dev/madpunk-dev.github.io" target="_blank">GitHub Repository</a>
+        </nav>
+        
+        <div>&copy; 2026 MadPunk Dev.</div>
+        <div class="brand-ref">Powered by the <a href="https://madpunks.com/" class="brand-link" target="_blank">MadPunks</a> Philosophy.</div>
+    </footer>
+
+</body>
+</html>
