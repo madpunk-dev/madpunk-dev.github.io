@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fw.madpunk.dev/sitemap.xml
+Sitemap: https://madpunk.dev/sitemap.xml
